@@ -8,12 +8,17 @@ This project includes:
 - Built-in task list
 
 ## How to Run the Program
-1. How to Run the Program
-2. Download the file 'pahinga’t gawa_timer.py'
-3. Make sure you have Python installed.
-4. Open a terminal or command prompt.
-5. Run the program by pressing F5 or clicking "Ran'
-6. Follow the on-screen instructions to start the pahinga’t gawa.
+1. Make sure Python is installed on your computer.
+2. If it is not yet installed, download and install it from the official Python website.
+3. Go to the GitHub page and download the timer.py file to your computer.
+4. Open command prompt. In Windows, win + R, and type type cmd and press Enter.
+5. Navigate to the folder where timer.py is saved.
+6. Use the cd command. For example: 
+cd Downloads
+or any place you placed the file
+7. Run the Python Script. To run, type "python timer.py". If the command does not work, type "python3 timer.py"
+8. If you get an error like “python is not recognized”
+It means Python isn’t added to your system PATH. You’ll need to reinstall Python and make sure to check “Add Python to PATH” during installation.
 
 ## Planned Features:
 ### Customizable Pomodoro Timer:
