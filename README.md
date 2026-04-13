@@ -48,13 +48,13 @@ It means Python isn’t added to your system PATH. You’ll need to reinstall Py
 
 Starting **#1 Work Session** (25 min)...  
 Time Remaining: 24:59 ...  
-End | Pause | Skip
+Start | Pause | Skip | Reset
 
 Work done!
 
 Starting **#1 Rest Session** (5 min)...  
 Time Remaining: 04:59  
-End | Pause | Skip  
+Start | Pause | Skip | Reset
 
 Break done!  
 
