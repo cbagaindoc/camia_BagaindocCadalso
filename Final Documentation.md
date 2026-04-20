@@ -35,13 +35,17 @@ Note that once it is checked, the task will still remain on the to-do list.
 
 - Countdown Timer Display
 
-- Session Number
+- Session Classification
 
 - Start/Pause/Skip/Reset Command
 
 - Buzzer Alarm
 
 - To-Do List
+
+- Prioritize List
+
+- Unlimited Cycles
 
 
 ## **Known Issues**
