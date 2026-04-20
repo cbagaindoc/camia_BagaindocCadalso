@@ -23,7 +23,7 @@ Through **Pahinga’t Gawa** application, we aim to:
 * User can also:
   * Pause & Unpause the timer
   * Skip timer sessions
-    
+  * Reset timer 
 ### Integrated Task List: 
 * A built-in task area where users can:
   * Add, edit, or remove tasks.
