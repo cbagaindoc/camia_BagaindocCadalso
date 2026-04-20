@@ -59,7 +59,7 @@ Start | Pause | Skip | Reset
 Break done!  
 
 _If there is an error, it will display:_
-> Whoops! The Rest Timer is greater than the Work Timer! Please try again.
+> Whoops! The Rest Time is greater than the Work Time! Please try again.
 
 ## Contributors
 * Febby Cadalso (Initial Draft, Flowchart)
