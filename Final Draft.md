@@ -42,12 +42,15 @@ For our base flowchart, please see our [Process Flow Diagram](https://github.com
 | Skip Command         | User can skip the current timer session early | Button clicks, keyboard shortcuts       |
 | Length of the Timer  | User sets duration for work & rest intervals | User-entered values, settings adjustment |
 | To-Do List           | User manages a checklist of tasks           | Typing to add tasks, edit/delete actions  |
+| Priority List        | User sets work priorities.                   | Typing to add a priority level |
+
+
 
 ### Output Type
 | Feature                   | Description                                                    | Output Type                |
 |---------------------------|----------------------------------------------------------------|-----------------------------|
 | Countdown Timer Display   | Remaining time for current session (work or break)             | On-screen digital timer (e.g., MM:SS) |
-| Session Number            | Current session count (e.g., “Session 3”)                     | On-screen text              |
+| Session Classification        | Current session count (e.g., “Session 3”)                     | On-screen text              |
 | To-do list                | To-do list (e.g., • Read ch. 67)                               | On-screen text              |
 | Buzzer Alarm              | Will sound an alarm if rest/work timer reaches 00:00           | Sound                       |
 
