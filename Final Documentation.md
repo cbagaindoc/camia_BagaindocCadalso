@@ -50,3 +50,10 @@ Note that once it is checked, the task will still remain on the to-do list.
 
 ## **Known Issues**
 N/A
+
+
+
+## **References**
+Cirillo, F. (2023). The Pomodoro Technique. Francesco Cirillo. (Original work published 2006). Retrieved from https://francescocirillo.com/products/the-pomodoro-technique  
+
+Lillis, C. (2025, April 24). What is task paralysis? Medical News Today. Retrieved from https://www.medicalnewstoday.com/articles/task-paralysis
