@@ -55,5 +55,6 @@ For our base flowchart, please see our [Process Flow Diagram](https://github.com
 | To-do list                | To-do list (e.g., • Read ch. 67)                               | On-screen text              |
 | Buzzer Alarm              | Will sound an alarm if rest/work timer reaches 00:00           | Sound                       |
 | Settings             | A configuration option       | On-screen                       |
+| Unlimited Cycles           | A system that allows the timer to repeat continuously.      | On-screen                       |
 [^1]: Lillis, C. (2025, April 24). [What is task paralysis?](https://www.medicalnewstoday.com/articles/task-paralysis#:~:text=Task%20paralysis%20is%20when%20someone,rapid%20changes%20in%20mood)
 [^2]: Cirillo, Francesco, [The Pomodoro Technique](https://web.archive.org/web/20230331051358/https://francescocirillo.com/products/the-pomodoro-technique), archived from [the original](https://francescocirillo.com/products/the-pomodoro-technique) on 31 March 2023
