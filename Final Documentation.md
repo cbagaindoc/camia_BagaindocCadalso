@@ -33,6 +33,10 @@ Note that once it is checked, the task will still remain on the to-do list.
 
 You may choose on a level of priority for your work by just simply clicking the button and choosing the level.
 
+**Settings**
+
+In the settings you are able to set rest and work time intervals and change the color for the priority level by simply clicking on the buttons.
+
 
 
 ## **List of Features**
