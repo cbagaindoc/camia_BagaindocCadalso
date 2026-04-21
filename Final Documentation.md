@@ -35,7 +35,7 @@ You may choose on a level of priority for your work by just simply clicking the 
 
 **Settings**
 
-1. You can set duration of work and rest time.
+1. You can set duration of work and rest time (work time must be greater than rest time).
 2. You can change the colors of the priority level that fits your licking(colors must be complementary to black and only provide the hex)
 Refer to these colors that we recommend:
 
