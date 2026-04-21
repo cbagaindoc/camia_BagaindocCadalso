@@ -43,6 +43,7 @@ For our base flowchart, please see our [Process Flow Diagram](https://github.com
 | Length of the Timer  | User sets duration for work & rest intervals | User-entered values, settings adjustment |
 | To-Do List           | User manages a checklist of tasks           | Typing to add tasks, edit/delete actions  |
 | Priority List        | User sets work priorities.                   | Typing to add a priority level |
+| Settings             | A configuration option that allows users to configure the time intervals and color for the priority list        | Configuring in settings                      |
 
 
 
@@ -53,6 +54,6 @@ For our base flowchart, please see our [Process Flow Diagram](https://github.com
 | Session Classification        | Current session count (e.g., “Session 3”)                     | On-screen text              |
 | To-do list                | To-do list (e.g., • Read ch. 67)                               | On-screen text              |
 | Buzzer Alarm              | Will sound an alarm if rest/work timer reaches 00:00           | Sound                       |
-
+| Settings             | A configuration option       | On-screen                       |
 [^1]: Lillis, C. (2025, April 24). [What is task paralysis?](https://www.medicalnewstoday.com/articles/task-paralysis#:~:text=Task%20paralysis%20is%20when%20someone,rapid%20changes%20in%20mood)
 [^2]: Cirillo, Francesco, [The Pomodoro Technique](https://web.archive.org/web/20230331051358/https://francescocirillo.com/products/the-pomodoro-technique), archived from [the original](https://francescocirillo.com/products/the-pomodoro-technique) on 31 March 2023
