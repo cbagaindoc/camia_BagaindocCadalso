@@ -29,6 +29,9 @@ There is a check mark next to the task. Press it and it will make the task be on
 You may also undone that task by clicking the checklist again. 
 Note that once it is checked, the task will still remain on the to-do list.
 
+**Priority List**
+You may choose on a level of priority for your work by just simply clicking the button and choosing the level.
+
 
 
 ## **List of Features**
