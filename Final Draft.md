@@ -50,8 +50,8 @@ For our base flowchart, please see our [Process Flow Diagram](https://github.com
 ### Output Type
 | Feature                   | Description                                                    | Output Type                |
 |---------------------------|----------------------------------------------------------------|-----------------------------|
-| Countdown Timer Display   | Remaining time for current session (work or break)             | On-screen digital timer (e.g., MM:SS) |
-| Session Classification        | Current session count (e.g., “Session 3”)                     | On-screen text              |
+| Countdown Timer Display   | Remaining time for current session (Work or Rest)             | On-screen digital timer (e.g., MM:SS) |
+| Session Classification        | Current session count (e.g., “Work Session”)                     | On-screen text              |
 | To-do list                | To-do list (e.g., • Read ch. 67)                               | On-screen text              |
 | Buzzer Alarm              | Will sound an alarm if rest/work timer reaches 00:00           | Sound                       |
 | Settings             | A configuration option       | On-screen                       |
