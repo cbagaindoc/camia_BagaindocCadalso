@@ -38,8 +38,8 @@ For our base flowchart, please see our [Process Flow Diagram](https://github.com
 ### Input Type
 | Feature              | Description                                 | User Input Method                       |
 |----------------------|---------------------------------------------|-------------------------------------------|
-| Start / Pause / Stop | User can start, pause, and stop the timer   | Button clicks, keyboard shortcuts         |
-| Skip Command         | User can skip the current timer session early | Button clicks, keyboard shortcuts       |
+| Start / Pause / Reset | User can start, pause, and reset the timer   | Button clicks       |
+| Skip Command         | User can skip the current timer session early | Button clicks      |
 | Length of the Timer  | User sets duration for work & rest intervals | User-entered values, settings adjustment |
 | To-Do List           | User manages a checklist of tasks           | Typing to add tasks, edit/delete actions  |
 | Priority List        | User sets work priorities.                   | Typing to add a priority level |
