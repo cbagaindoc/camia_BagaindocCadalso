@@ -43,9 +43,11 @@ Note that once it is checked, the task will still remain on the to-do list.
 
 - To-Do List
 
-- Prioritize List
+- Priorty List
 
 - Unlimited Cycles
+
+- Settings
 
 
 ## **Known Issues**
