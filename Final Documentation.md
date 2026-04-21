@@ -39,14 +39,14 @@ You may choose on a level of priority for your work by just simply clicking the 
 2. You can change the colors of the priority level that fits your licking(colors must be complementary to black and only provide the hex)
 Refer to these colors that we recommend:
 
-. Classic White: #FFFFFF (High contrast, clean)
-. Bright Gold: #FFD700 or #DAA520 (Luxury, sophistication)
-. Vibrant Red: #FF0000 or #BF2323 (Bold, dramatic)
-. Neon/Volt: #39FF14 or #CCFF00 (Modern, futuristic)
-. Teal/Cyan: #008080 or #069494 (Cool, vibrant)
-. Silver/Light Gray: #C4C4C4 or #E0E0E0 (Metallic, balanced)
-. Dusty Rose: #DCA1A1 (Softened contrast)
-. Lavender: #E6E6FA (Delicate) 
+* Classic White: #FFFFFF (High contrast, clean)
+* Bright Gold: #FFD700 or #DAA520 (Luxury, sophistication)
+* Vibrant Red: #FF0000 or #BF2323 (Bold, dramatic)
+* Neon/Volt: #39FF14 or #CCFF00 (Modern, futuristic)
+* Teal/Cyan: #008080 or #069494 (Cool, vibrant)
+* Silver/Light Gray: #C4C4C4 or #E0E0E0 (Metallic, balanced)
+* Dusty Rose: #DCA1A1 (Softened contrast)
+* Lavender: #E6E6FA (Delicate) 
 
 
 ## **List of Features**
