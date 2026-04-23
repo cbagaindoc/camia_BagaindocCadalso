@@ -68,10 +68,6 @@ Refer to these colors that we recommend:
 - Settings
 
 
-## **Known Issues**
-N/A
-
-
 
 ## **References**
 Cirillo, F. (2023). The Pomodoro Technique. Francesco Cirillo. (Original work published 2006). Retrieved from https://francescocirillo.com/products/the-pomodoro-technique  
