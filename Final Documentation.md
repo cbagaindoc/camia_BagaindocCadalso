@@ -10,6 +10,25 @@ Through **Pahinga’t Gawa** application, we aim to:
 * Help users increase productivity & manage time effectivlely.
 * Help users break tasks into manageable work/rest intervals to reduce overload.
 * Include a task-list feature to help users stay on track and prioritize there work.
+
+
+## Planned Features
+- Countdown Timer Display
+
+- Session Classification
+
+- Start/Pause/Skip/Reset Command
+
+- Buzzer Alarm
+
+- To-Do List
+
+- Priorty List
+
+- Unlimited Cycles
+
+- Settings
+
   
 
 ## Planned Inputs and Outputs
