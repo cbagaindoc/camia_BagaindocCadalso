@@ -1,3 +1,18 @@
+# Pahinga’t Gawa: Productivity App 🥔⏲️
+
+## Problem Statement:
+In our daily lives, it’s common to feel overwhelmed by the number of tasks we need to accomplish. This sense of overload often leads to procrastination or distraction, decreasing overall productivity. Many people avoid starting tasks because they seem too time-consuming or stressful. To address this issue, we aim to develop a solution based on the Pomodoro Technique, a proven time management method developed by Francesco Cirillo that helps users stay focused and reduce burnout.
+
+## Project Objectives:
+Our project’s main goal is to help users increase productivity and manage time more effectively. 
+Through **Pahinga’t Gawa** application, we aim to:
+* Develop a user friendly Pahinga’t Gawa timer platform using the Python language.
+* Help users increase productivity & manage time effectivlely.
+* Help users break tasks into manageable work/rest intervals to reduce overload.
+* Include a task-list feature to help users stay on track and prioritize there work.
+
+
+
 # **How to Use the Program:**
 
 The program is relatively simple, as it is just a productivity application suitable for your use. There are plenty of features that are relatively simple.
