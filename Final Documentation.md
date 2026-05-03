@@ -109,23 +109,6 @@ Refer to these colors that we recommend:
 * Lavender: #E6E6FA (Delicate) 
 
 
-## **List of Features**
-
-- Countdown Timer Display
-
-- Session Classification
-
-- Start/Pause/Skip/Reset Command
-
-- Buzzer Alarm
-
-- To-Do List
-
-- Priorty List
-
-- Unlimited Cycles
-
-- Settings
 
 
 
