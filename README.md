@@ -21,7 +21,7 @@ or any place you placed the file
 It means Python isn’t added to your system PATH. You’ll need to reinstall Python and make sure to check “Add Python to PATH” during installation.
 
 ## Planned Features:
-### Customizable Pomodoro Timer:
+### Customizable Pahinga’t Gawa Timer:
 * Users can set their own work and break durations.
 * The timer automatically cycles between:
   * A Work Session (e.g., 25 minutes)
