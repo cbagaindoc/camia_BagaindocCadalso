@@ -10,7 +10,33 @@ Through **Pahinga’t Gawa** application, we aim to:
 * Help users increase productivity & manage time effectivlely.
 * Help users break tasks into manageable work/rest intervals to reduce overload.
 * Include a task-list feature to help users stay on track and prioritize there work.
+  
 
+## Planned Inputs and Outputs
+### Input Type
+| Feature              | Description                                 | User Input Method                       |
+|----------------------|---------------------------------------------|-------------------------------------------|
+| Start / Pause / Reset | User can start, pause, and reset the timer   | Button clicks       |
+| Skip Command         | User can skip the current timer session early | Button clicks      |
+| Length of the Timer  | User sets duration for work & rest intervals | User-entered values, settings adjustment |
+| To-Do List           | User manages a checklist of tasks           | Typing to add tasks, edit/delete actions  |
+| Priority List        | User sets work priorities.                   | Typing to add a priority level |
+| Settings             | A configuration option that allows users to configure the time intervals and color for the priority list        | Configuring in settings                      |
+
+
+
+### Output Type
+| Feature                   | Description                                                    | Output Type                |
+|---------------------------|----------------------------------------------------------------|-----------------------------|
+| Countdown Timer Display   | Remaining time for current session (Work or Rest)             | On-screen digital timer (e.g., MM:SS) |
+| Session Classification        | Current session  (e.g., “Work Session”)                     | On-screen text              |
+| To-do list                | To-do list (e.g., • Read ch. 67)                               | On-screen text              |
+| Buzzer Alarm              | Will sound an alarm if rest/work timer reaches 00:00           | Sound                       |
+| Settings             | A configuration option       | On-screen                       |
+| Unlimited Cycles           | A system that allows the timer to repeat continuously.      | On-screen                       |
+
+# **Process Flowchart**
+Click the link to access it-> https://www.canva.com/design/DAGzT_fAxcU/GcoDI-77cmC2w-bZKtWs-Q/edit?ui=eyJEIjp7IlAiOnsiQiI6ZmFsc2V9fX0
 
 
 # **How to Use the Program:**
