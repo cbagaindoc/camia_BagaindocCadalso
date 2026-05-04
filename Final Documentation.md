@@ -120,4 +120,10 @@ Cherry, K. (2023, October 31). Pomodoro technique: History, steps, benefits, and
 
 Cirillo, F. (2023). The Pomodoro Technique. Francesco Cirillo. (Original work published 2006). Retrieved from https://francescocirillo.com/products/the-pomodoro-technique  
 
+Computer Hope. (n.d.). HTML color codes and names. Computer Hope. https://www.computerhope.com/htmcolor.htm
+
+Google. (n.d.). Learn HTML. web.dev. https://web.dev/learn/html
+
 Lillis, C. (2025, April 24). What is task paralysis? Medical News Today. Retrieved from https://www.medicalnewstoday.com/articles/task-paralysis
+
+W3Schools. (n.d.). HTML tutorial. W3Schools. https://www.w3schools.com/html
