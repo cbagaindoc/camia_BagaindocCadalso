@@ -57,6 +57,9 @@ Through **Pahinga’t Gawa** application, we aim to:
 # **Process Flowchart**
 Click the link to access it-> https://www.canva.com/design/DAGzT_fAxcU/GcoDI-77cmC2w-bZKtWs-Q/edit?ui=eyJEIjp7IlAiOnsiQiI6ZmFsc2V9fX0
 
+# **Methodology**
+Click the link to access it-> https://docs.google.com/document/d/1Ey9s3n3TSn3MJutSHD_mDZuKeWVukDgYMuYV2BoXtvU/edit?tab=t.0#heading=h.2vw71clwmz35
+
 
 # **How to Use the Program:**
 
@@ -113,6 +116,8 @@ Refer to these colors that we recommend:
 
 
 ## **References**
+Cherry, K. (2023, October 31). Pomodoro technique: History, steps, benefits, and drawbacks. Verywell Mind. https://www.verywellmind.com/pomodoro-technique-history-steps-benefits-and-drawbacks-6892111
+
 Cirillo, F. (2023). The Pomodoro Technique. Francesco Cirillo. (Original work published 2006). Retrieved from https://francescocirillo.com/products/the-pomodoro-technique  
 
 Lillis, C. (2025, April 24). What is task paralysis? Medical News Today. Retrieved from https://www.medicalnewstoday.com/articles/task-paralysis
