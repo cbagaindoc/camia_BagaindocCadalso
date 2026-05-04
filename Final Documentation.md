@@ -113,7 +113,8 @@ Refer to these colors that we recommend:
 
 
 
-
+## **Known Isssues**
+N/A
 
 ## **References**
 Cherry, K. (2023, October 31). Pomodoro technique: History, steps, benefits, and drawbacks. Verywell Mind. https://www.verywellmind.com/pomodoro-technique-history-steps-benefits-and-drawbacks-6892111
