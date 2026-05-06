@@ -116,7 +116,7 @@ Refer to these colors that we recommend:
 ## **Known Isssues**
 N/A
 ## **Reflection and Evalutation**
-Our CS 2 journey with the Pomodoro Timer project was a mix of challenges and learning moments. At first, me and my partner had a hard time figuring out how to make the timer work properly in Tinker, but we slowly got the hang of it by testing and fixing errors together. Working as a team taught us patience and the importance of clear communication, especially when things didn’t go as planned. I also realized how coding can be applied to real life, since the Pomodoro technique helps with focus and productivity. Overall, this project made me appreciate both the technical side of programming and the value of teamwork. 
+Our CS 2 journey with the Pahinga't Gawa project was a mix of challenges and learning moments. At first, me and my partner had a hard time figuring out how to make the timer work properly in Tinker, but we slowly got the hang of it by testing and fixing errors together. Working as a team taught us patience and the importance of clear communication, especially when things didn’t go as planned. I also realized how coding can be applied to real life, since the Pomodoro technique helps with focus and productivity. Overall, this project made me appreciate both the technical side of programming and the value of teamwork. 
 
 ## **References**
 Cherry, K. (2023, October 31). Pomodoro technique: History, steps, benefits, and drawbacks. Verywell Mind. https://www.verywellmind.com/pomodoro-technique-history-steps-benefits-and-drawbacks-6892111
