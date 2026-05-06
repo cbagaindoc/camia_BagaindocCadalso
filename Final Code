@@ -1,0 +1,449 @@
+import tkinter as tk
+from tkinter import messagebox
+import json
+import os
+
+
+# ---------------- PERSISTENCE ----------------
+DATA_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "productivity_data.json")
+
+def save_data():
+    data = {
+        "tasks": tasks,
+        "priority_levels": priority_levels,
+        "timer": {
+            "work_minutes":        work_minutes,
+            "short_break_minutes": short_break_minutes,
+        }
+    }
+    try:
+        with open(DATA_FILE, "w") as f:
+            json.dump(data, f, indent=2)
+    except Exception as e:
+        print(f"Warning: could not save data: {e}")
+
+def load_data():
+    if not os.path.exists(DATA_FILE):
+        return
+    try:
+        with open(DATA_FILE) as f:
+            data = json.load(f)
+
+        global work_minutes, short_break_minutes
+
+        timer = data.get("timer", {})
+        work_minutes        = timer.get("work_minutes",        work_minutes)
+        short_break_minutes = timer.get("short_break_minutes", short_break_minutes)
+
+        saved_priorities = data.get("priority_levels")
+        if saved_priorities:
+            priority_levels.clear()
+            priority_levels.extend(saved_priorities)
+
+        saved_tasks = data.get("tasks", [])
+        tasks.clear()
+        tasks.extend(saved_tasks)
+    except Exception as e:
+        print(f"Warning: could not load data: {e}")
+
+def on_close():
+    save_data()
+    root.destroy()
+
+# ---------------- POMODORO ----------------
+work_minutes        = 25
+short_break_minutes = 5
+
+def build_sessions():
+    return [
+        ("Work",        work_minutes * 60,        "#c0392b"),
+        ("Short Break", short_break_minutes * 60,  "#27ae60"),
+    ]
+
+POMODORO_SESSIONS = build_sessions()
+
+pomo_running = False
+pomo_remaining = 0
+pomo_session_index = 0
+pomo_after_id = None
+pomo_cycle_count = 1
+
+def pomo_load_session():
+    global pomo_remaining
+    name, duration, color = POMODORO_SESSIONS[pomo_session_index]
+    pomo_remaining = duration
+    mins = duration // 60
+    pomo_label.config(text=f"{mins:02}:00")
+    pomo_session_label.config(text=f"Session: {name}", fg=color)
+    dot_canvas.itemconfig(dot, fill=color)
+    pomo_cycle_label.config(text=f"Cycle {pomo_cycle_count}")
+
+def pomo_tick():
+    global pomo_running, pomo_remaining, pomo_session_index, pomo_after_id
+    if not pomo_running:
+        return
+    pomo_remaining -= 1
+    mins = pomo_remaining // 60
+    secs = pomo_remaining % 60
+    pomo_label.config(text=f"{mins:02}:{secs:02}")
+    if pomo_remaining <= 0:
+        pomo_running = False
+        next_index = (pomo_session_index + 1) % len(POMODORO_SESSIONS)
+        if next_index < pomo_session_index or (pomo_session_index == len(POMODORO_SESSIONS) - 1):
+            global pomo_cycle_count
+            # increment cycle when a full work+break loop completes
+            if POMODORO_SESSIONS[pomo_session_index][0] == "Short Break":
+                pomo_cycle_count += 1
+        pomo_session_index = next_index
+        pomo_load_session()
+        root.bell()
+        pomo_status_label.config(text="Session done! Press Start.")
+    else:
+        pomo_after_id = root.after(1000, pomo_tick)
+
+def pomo_start():
+    global pomo_running, pomo_after_id
+    if not pomo_running:
+        pomo_running = True
+        pomo_status_label.config(text="Running...")
+        pomo_after_id = root.after(1000, pomo_tick)
+
+def pomo_pause():
+    global pomo_running
+    pomo_running = False
+    pomo_status_label.config(text="Paused")
+
+def pomo_reset():
+    global pomo_running, pomo_session_index, pomo_cycle_count
+    pomo_running = False
+    pomo_session_index = 0
+    pomo_cycle_count = 1
+    pomo_load_session()
+    pomo_status_label.config(text="Ready")
+
+def pomo_skip():
+    global pomo_running, pomo_session_index, pomo_cycle_count
+    pomo_running = False
+    if POMODORO_SESSIONS[pomo_session_index][0] == "Short Break":
+        pomo_cycle_count += 1
+    pomo_session_index = (pomo_session_index + 1) % len(POMODORO_SESSIONS)
+    pomo_load_session()
+    pomo_status_label.config(text="Skipped — press Start")
+
+# ---------------- PRIORITY LABELS ----------------
+priority_levels = [
+    ["High",   "#e74c3c"],
+    ["Medium", "#e67e22"],
+    ["Low",    "#27ae60"],
+]
+
+def get_priority_names():
+    return [p[0] for p in priority_levels]
+
+def get_priority_color(name):
+    for p in priority_levels:
+        if p[0] == name:
+            return p[1]
+    return "#888888"
+
+# ---------------- TO-DO LIST ----------------
+tasks = []
+
+def add_task():
+    text = task_entry.get().strip()
+    priority = priority_var.get()
+    if text:
+        tasks.append({"title": text, "done": False, "priority": priority})
+        task_entry.delete(0, tk.END)
+        refresh_tasks()
+        save_data()
+
+def toggle_task(i):
+    tasks[i]["done"] = not tasks[i]["done"]
+    refresh_tasks()
+    save_data()
+
+def delete_task(i):
+    tasks.pop(i)
+    refresh_tasks()
+    save_data()
+
+def change_priority(i, new_priority):
+    tasks[i]["priority"] = new_priority
+    refresh_tasks()
+    save_data()
+
+def refresh_tasks():
+    for widget in task_frame.winfo_children():
+        widget.destroy()
+
+    priority_menu["menu"].delete(0, "end")
+    for name in get_priority_names():
+        priority_menu["menu"].add_command(
+            label=name, command=lambda n=name: priority_var.set(n))
+    if priority_var.get() not in get_priority_names():
+        priority_var.set(get_priority_names()[0])
+
+    priority_order = get_priority_names()
+    def sort_key(t):
+        done = 1 if t["done"] else 0
+        try:
+            pri = priority_order.index(t["priority"])
+        except ValueError:
+            pri = len(priority_order)
+        return (done, pri)
+
+    sorted_tasks = sorted(enumerate(tasks), key=lambda x: sort_key(x[1]))
+
+    for orig_i, task in sorted_tasks:
+        color = get_priority_color(task["priority"])
+        row = tk.Frame(task_frame, pady=2)
+        row.pack(fill="x")
+
+        tk.Label(row, text=task["priority"], bg=color, fg="white",
+                 font=("Arial", 8, "bold"), padx=4, pady=1,
+                 relief="flat", width=7).pack(side="left", padx=(0, 6))
+
+        var = tk.BooleanVar(value=task["done"])
+        cb = tk.Checkbutton(
+            row, text=task["title"], variable=var,
+            command=lambda i=orig_i: toggle_task(i),
+            anchor="w", fg="gray" if task["done"] else "black"
+        )
+        cb.pack(side="left", fill="x", expand=True)
+
+        pri_names = get_priority_names()
+        pri_var = tk.StringVar(value=task["priority"])
+        om = tk.OptionMenu(row, pri_var, *pri_names,
+                           command=lambda val, i=orig_i: change_priority(i, val))
+        om.config(width=6, font=("Arial", 8))
+        om.pack(side="right", padx=2)
+
+        tk.Button(row, text="✕", fg="#c0392b", font=("Arial", 8),
+                  command=lambda i=orig_i: delete_task(i),
+                  relief="flat", cursor="hand2").pack(side="right", padx=2)
+
+# ---------------- SETTINGS WINDOW ----------------
+def open_settings():
+    win = tk.Toplevel(root)
+    win.title("Settings")
+    win.resizable(False, False)
+    win.grab_set()
+
+    notebook_frame = tk.Frame(win)
+    notebook_frame.pack(fill="both", expand=True)
+
+    tab_bar = tk.Frame(notebook_frame, bg="#dddddd")
+    tab_bar.pack(fill="x")
+
+    content_area = tk.Frame(notebook_frame, padx=20, pady=14)
+    content_area.pack(fill="both", expand=True)
+
+    pages = {}
+
+    def show_page(name):
+        for p in pages.values():
+            p.pack_forget()
+        pages[name].pack(fill="both", expand=True)
+        for btn_name, btn in tab_btns.items():
+            btn.config(relief="sunken" if btn_name == name else "raised",
+                       bg="#ffffff" if btn_name == name else "#dddddd")
+
+    tab_btns = {}
+    for tab_name in ("Timer", "Priorities"):
+        btn = tk.Button(tab_bar, text=tab_name, width=12,
+                        relief="raised", bg="#dddddd",
+                        command=lambda n=tab_name: show_page(n))
+        btn.pack(side="left")
+        tab_btns[tab_name] = btn
+
+    # ---- Timer page ----
+    timer_page = tk.Frame(content_area)
+    pages["Timer"] = timer_page
+
+    tk.Label(timer_page, text="Pomodoro Durations",
+             font=("Arial", 12, "bold")).grid(row=0, column=0, columnspan=2,
+                                               pady=(0, 10), sticky="w")
+    timer_fields = [
+        ("Work (minutes)",        work_minutes),
+        ("Short Break (minutes)", short_break_minutes),
+    ]
+    timer_entries = []
+    for i, (label, default) in enumerate(timer_fields, start=1):
+        tk.Label(timer_page, text=label, anchor="w").grid(
+            row=i, column=0, sticky="w", pady=4, padx=(0, 12))
+        var = tk.StringVar(value=str(default))
+        tk.Entry(timer_page, textvariable=var, width=6, justify="center").grid(
+            row=i, column=1, pady=4)
+        timer_entries.append(var)
+
+    # ---- Priorities page ----
+    pri_page = tk.Frame(content_area)
+    pages["Priorities"] = pri_page
+
+    tk.Label(pri_page, text="Priority Labels & Colors",
+             font=("Arial", 12, "bold")).grid(row=0, column=0, columnspan=3,
+                                               pady=(0, 10), sticky="w")
+    tk.Label(pri_page, text="Label",      width=10).grid(row=1, column=0)
+    tk.Label(pri_page, text="Color (hex)", width=12).grid(row=1, column=1)
+    tk.Label(pri_page, text="Preview",    width=8).grid(row=1, column=2)
+
+    pri_entries = []
+    for i, (lbl, col) in enumerate(priority_levels, start=2):
+        lv = tk.StringVar(value=lbl)
+        cv = tk.StringVar(value=col)
+
+        tk.Entry(pri_page, textvariable=lv, width=10, justify="center").grid(
+            row=i, column=0, padx=4, pady=3)
+        tk.Entry(pri_page, textvariable=cv, width=10, justify="center").grid(
+            row=i, column=1, padx=4, pady=3)
+
+        preview = tk.Label(pri_page, text="  ██  ", bg=col, width=6)
+        preview.grid(row=i, column=2, padx=4)
+
+        def make_updater(cv=cv, preview=preview):
+            def update_preview(*_):
+                try:
+                    preview.config(bg=cv.get())
+                except:
+                    pass
+            return update_preview
+
+        cv.trace_add("write", make_updater())
+        pri_entries.append((lv, cv, preview))
+
+    # ---- Apply ----
+    def apply_all():
+        global work_minutes, short_break_minutes, POMODORO_SESSIONS
+
+        try:
+            w  = int(timer_entries[0].get())
+            sb = int(timer_entries[1].get())
+            if any(v <= 0 for v in (w, sb)):
+                raise ValueError
+        except ValueError:
+            messagebox.showerror("Invalid input",
+                                 "Timer values must be positive whole numbers.", parent=win)
+            return
+
+        if w <= sb:
+            messagebox.showerror("Invalid input",
+                                 "Whoops! The Rest Timer is greater than the Work Timer! Please try again.", parent=win)
+            return
+
+        new_priorities = []
+        for lv, cv, _ in pri_entries:
+            label = lv.get().strip()
+            color = cv.get().strip()
+            if not label:
+                messagebox.showerror("Invalid input",
+                                     "Priority labels cannot be empty.", parent=win)
+                return
+            if not (color.startswith("#") and len(color) in (4, 7)):
+                messagebox.showerror("Invalid input",
+                                     f"'{color}' is not a valid hex color (e.g. #e74c3c).",
+                                     parent=win)
+                return
+            new_priorities.append([label, color])
+
+        work_minutes        = w
+        short_break_minutes = sb
+        POMODORO_SESSIONS   = build_sessions()
+        pomo_reset()
+        pomo_status_label.config(text="Settings applied — ready!")
+
+        priority_levels.clear()
+        priority_levels.extend(new_priorities)
+        refresh_tasks()
+        save_data()
+
+        win.destroy()
+
+    btn_row = tk.Frame(win)
+    btn_row.pack(pady=10)
+    tk.Button(btn_row, text="Apply",  width=10, command=apply_all).pack(side="left", padx=6)
+    tk.Button(btn_row, text="Cancel", width=10, command=win.destroy).pack(side="left", padx=6)
+
+    show_page("Timer")
+
+# ---------------- GUI LAYOUT ----------------
+root = tk.Tk()
+root.title("Pahinga't Gawa")
+root.geometry("680x460")
+
+# Load saved data before building UI
+load_data()
+POMODORO_SESSIONS = build_sessions()
+
+main_frame = tk.Frame(root)
+main_frame.pack(fill="both", expand=True)
+
+# ---- Left column: Pomodoro ----
+left_col = tk.Frame(main_frame)
+left_col.pack(side="left", fill="both", expand=True)
+
+pomo_frame = tk.Frame(left_col, padx=20, pady=10)
+pomo_frame.pack(fill="x")
+
+header_row = tk.Frame(pomo_frame)
+header_row.pack(fill="x")
+tk.Label(header_row, text="Timer", font=("Arial", 14, "bold")).pack(side="left")
+tk.Button(header_row, text="⚙ Settings", font=("Arial", 9),
+          command=open_settings).pack(side="right")
+
+indicator_row = tk.Frame(pomo_frame)
+indicator_row.pack(pady=2)
+
+dot_canvas = tk.Canvas(indicator_row, width=14, height=14, highlightthickness=0)
+dot_canvas.pack(side="left", padx=(0, 6))
+dot = dot_canvas.create_oval(2, 2, 12, 12, fill="#c0392b", outline="")
+
+pomo_session_label = tk.Label(indicator_row, text="Session: Work",
+                               font=("Arial", 10), fg="#c0392b")
+pomo_session_label.pack(side="left")
+
+pomo_cycle_label = tk.Label(pomo_frame, text="Cycle 1",
+                             font=("Arial", 9), fg="#888888")
+pomo_cycle_label.pack()
+
+pomo_label = tk.Label(pomo_frame, text="25:00", font=("Arial", 28, "bold"))
+pomo_label.pack(pady=4)
+
+pomo_status_label = tk.Label(pomo_frame, text="Ready", font=("Arial", 9), fg="#555555")
+pomo_status_label.pack()
+
+pomo_btn_row = tk.Frame(pomo_frame)
+pomo_btn_row.pack(pady=4)
+tk.Button(pomo_btn_row, text="Start",  width=7, command=pomo_start).pack(side="left", padx=2)
+tk.Button(pomo_btn_row, text="Pause",  width=7, command=pomo_pause).pack(side="left", padx=2)
+tk.Button(pomo_btn_row, text="Skip",   width=7, command=pomo_skip).pack(side="left", padx=2)
+tk.Button(pomo_btn_row, text="Reset",  width=7, command=pomo_reset).pack(side="left", padx=2)
+
+# ---- Right column: To-Do List ----
+todo_frame = tk.Frame(main_frame, padx=20, pady=14)
+todo_frame.pack(side="right", fill="both", expand=True)
+
+tk.Label(todo_frame, text="To-Do List", font=("Arial", 14, "bold")).pack()
+
+add_row = tk.Frame(todo_frame)
+add_row.pack(fill="x", pady=4)
+
+task_entry = tk.Entry(add_row)
+task_entry.pack(side="left", fill="x", expand=True)
+
+priority_var = tk.StringVar(value=priority_levels[0][0])
+priority_menu = tk.OptionMenu(add_row, priority_var, *get_priority_names())
+priority_menu.config(width=7, font=("Arial", 9))
+priority_menu.pack(side="left", padx=4)
+
+tk.Button(add_row, text="Add", command=add_task, width=5).pack(side="left")
+
+task_frame = tk.Frame(todo_frame)
+task_frame.pack(fill="both", expand=True)
+
+# Hook close event to save before exit
+root.protocol("WM_DELETE_WINDOW", on_close)
+
+pomo_load_session()
+refresh_tasks()
+root.mainloop()
